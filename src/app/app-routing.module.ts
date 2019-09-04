@@ -8,7 +8,7 @@ import { TrainingComponent } from './training/training.component';
 
 const routes: Routes = [
   {
-    path: '/',
+    path: '',
     component: WelcomeComponent
   },
   {
