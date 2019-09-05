@@ -1,0 +1,11 @@
+a {
+  text-decoration:none;
+  color: white;
+  &:hover{
+    color: lightgray;
+  }
+  &:active{
+    color: lightgray;
+  }
+}
+
