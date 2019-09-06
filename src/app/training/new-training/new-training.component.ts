@@ -26,9 +26,12 @@ export class NewTrainingComponent implements OnInit, OnDestroy {
     this.isLoadingSub = this.uiService.loadingStateChanged.subscribe((state) => {
       this.isLoading = state;
     })
-    this.trainingService.fetchAvailExercises();
+    this.fetchExercises();
   }
 
+  fetchExercises(){
+    this.trainingService.fetchAvailExercises();
+  }
   onStartTraining(form: NgForm) {
     this.trainingService.startExercise(form.value.exercise);
   }
