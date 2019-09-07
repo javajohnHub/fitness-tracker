@@ -1,34 +1,28 @@
-import { Component, OnInit, EventEmitter, Output, OnDestroy  } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Subscription, Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../../app.reducer';
 import { AuthService } from 'src/app/auth/auth.service';
-import { Subscription } from 'rxjs';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, OnDestroy {
+export class HeaderComponent implements OnInit{
   @Output() sidenavToggle = new EventEmitter<void>();
-  isAuth = false;
-  authSub: Subscription;
-  constructor(private auth: AuthService) { }
+  isAuth$: Observable<boolean>;
+  constructor(private auth: AuthService, private store: Store<fromRoot.State>) { }
 
   ngOnInit() {
-    this.authSub = this.auth.authChange.subscribe(status => {
-      this.isAuth = status;
-    })
-  }
-
-  ngOnDestroy(){
-    this.authSub.unsubscribe();
+    this.isAuth$ = this.store.select(fromRoot.getIsAuth)
   }
   onToggle(){
     this.sidenavToggle.emit();
   }
 
   logout() {
-    this.auth.logout()
+    this.auth.logout();
   }
 
 }
