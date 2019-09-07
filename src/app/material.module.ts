@@ -63,6 +63,7 @@ import {
   MatPaginatorModule,
   MatSnackBarModule
 
+
   ]
 })
 export class MaterialModule {}

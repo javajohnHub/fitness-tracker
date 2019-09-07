@@ -33,7 +33,9 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(){
+    if(this.isLoadingSub){
     this.isLoadingSub.unsubscribe();
+    }
   }
   get email(){
     return this.loginForm.get('email');

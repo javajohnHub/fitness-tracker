@@ -26,6 +26,9 @@ export class SignupComponent implements OnInit, OnDestroy {
     this.auth.registerUser(form.value);
   }
   ngOnDestroy(){
-    this.isLoadingSub.unsubscribe();
+    if(this.isLoadingSub){
+      this.isLoadingSub.unsubscribe();
+    }
+
   }
 }
